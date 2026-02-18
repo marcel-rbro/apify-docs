@@ -1,15 +1,5 @@
 #!/usr/bin/env bash
 
-# Prevent recursion: git subtree pull triggers another merge,
-# which would fire this hook again.
-if [ -n "$_SUBTREE_PULL_ACTIVE" ]; then
-    exit 0
-fi
-export _SUBTREE_PULL_ACTIVE=1
-
-# Update the agent-instructions subtree
-echo "Updating .agent-instructions subtree..."
-GIT_MERGE_AUTOEDIT=no git subtree pull \
-    --prefix=.agent-instructions \
-    https://github.com/marcel-rbro/apify-docs-instructions.git main \
-    --squash 2>&1 || true
+# Update the agent-instructions submodule after every merge/pull
+echo "Updating .agent-instructions submodule..."
+git submodule update --init --remote 2>&1 || true

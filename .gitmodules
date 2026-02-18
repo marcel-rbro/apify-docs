@@ -1,0 +1,4 @@
+[submodule ".agent-instructions"]
+	path = .agent-instructions
+	url = https://github.com/marcel-rbro/apify-docs-instructions.git
+	branch = main
